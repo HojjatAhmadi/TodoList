@@ -1,0 +1,81 @@
+#buttonSideBar.active{
+    background-color: #DC4C3E !important;
+    color:white !important;
+}
+
+#buttonSideBar.active svg{
+    fill:white;
+}
+
+li.active{
+    background-color: green !important;
+    color: white !important;
+    border: none !important;    
+}
+
+.modalBg{
+    display: none;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(10px);
+    z-index: 5;
+}
+
+.modalBg.true{
+    display: flex;
+}
+
+.modalBg>div{
+    padding-top: 50px !important;
+}
+
+.closeModal{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closeModal:hover , .closeModal:checked{
+    border: none !important;
+}
+
+.alert {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    z-index: 6;
+    animation: alertMessage 2s ease forwards, alertMessageReverse 2s ease 5s forwards;
+}
+
+@keyframes alertMessage {
+    from {
+        top: -100%;
+    }
+    to {
+        top: 10px;
+    }
+}
+
+@keyframes alertMessageReverse {
+    from {
+        top: 10px;
+    }
+    to {
+        top: -100%;
+    }
+}
+
+.githubShow{
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    text-decoration: none;
+    background-color: #DC4C3E;
+}
