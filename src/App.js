@@ -44,9 +44,16 @@ class App extends Component {
     }
 
     deleteTodoList(row){
+        console.log(row)
         this.setState({toDoList : this.state.toDoList.filter(e=> row!==e)})
+        this.setState({project : this.state.project.map(e => {
+            if(e.id == row.idProject){
+                e.lengthListInto = e.lengthListInto-1
+            }
+            return e;
+        })})
         this.setState({alert : {text : 'task was successfully done!' , type : 'success'}})
-        setTimeout(this.clearAlert.bind(this) , 8000)
+        setTimeout(this.clearAlert.bind(this) , 7000)
     }
 
     updateTodoList(task , id){
@@ -58,16 +65,21 @@ class App extends Component {
             return e;
         })})
         this.setState({alert : {text : 'task was successfully update!' , type : 'success'}})
-        setTimeout(this.clearAlert.bind(this) , 8000)
+        setTimeout(this.clearAlert.bind(this) , 7000)
     }
 
     createProject(title){
+        if(title == '' || title == undefined){
+            this.setState({alert : {text : 'the name of project can not be empty!' , type : 'danger'}})
+            setTimeout(this.clearAlert.bind(this) , 7000)
+            return ;
+        }
         let condition = true;
         this.state.project.forEach(e => {
             if(e.name === title){
                 condition = !condition;
                 this.setState({alert : {text : 'we have already this name for another project' , type : 'danger'}})
-                setTimeout(this.clearAlert.bind(this) , 8000)
+                setTimeout(this.clearAlert.bind(this) , 7000)
             }
         })
         if(condition){
@@ -76,7 +88,7 @@ class App extends Component {
                 {id:id , name:title , lengthListInto:0}
             )
             this.setState({alert : {text : 'project was successfully added!' , type : 'success'}})
-            setTimeout(this.clearAlert.bind(this) , 8000)
+            setTimeout(this.clearAlert.bind(this) , 7000)
         }
     }
 
@@ -86,13 +98,18 @@ class App extends Component {
 
     onDeleteProject(id){
         this.setState({alert : {text : 'project was successfully delete!' , type : 'success'}})
-        setTimeout(this.clearAlert.bind(this) , 8000)
+        setTimeout(this.clearAlert.bind(this) , 7000)
         setTimeout(()=>{this.setState({project : this.state.project.filter(e => e.id !== id)
             , toDoList : this.state.toDoList.filter(e => e.idProject !== id)
         });} , 5000)
     }
 
     changeDataProject(oldName , newName){
+        if(newName == '' || newName == undefined){
+            this.setState({alert : {text : 'new name of project can not be empty!' , type : 'danger'}})
+            setTimeout(this.clearAlert.bind(this) , 7000)
+            return ;
+        }
         this.setState({project : this.state.project.map(e => {
             if(e.name == oldName){
                 e.name = newName;
@@ -100,10 +117,15 @@ class App extends Component {
             return e;
         })})
         this.setState({alert : {text : 'project name was successfully change!' , type : 'success'}})
-        setTimeout(this.clearAlert.bind(this) , 8000)
+        setTimeout(this.clearAlert.bind(this) , 7000)
     }
 
     createToDoListHandler(idProject , title , desc , time){
+        if(title == '' || desc == '' || time == ''){
+            this.setState({alert : {text : 'new task information not completely fill!' , type : 'danger'}})
+            setTimeout(this.clearAlert.bind(this) , 7000)
+            return ;
+        }
         let id = this.state.toDoList[this.state.toDoList.length-1].id + 1;
         this.state.toDoList.push(
             {id:id , name:title , description:desc , idProject:idProject , deadTime:time}
@@ -115,7 +137,7 @@ class App extends Component {
             return e;
         })})
         this.setState({alert : {text : 'New Task was successfully added!' , type : 'success'}})
-        setTimeout(this.clearAlert.bind(this) , 8000)
+        setTimeout(this.clearAlert.bind(this) , 7000)
     }
 }
  
