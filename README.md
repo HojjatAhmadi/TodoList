@@ -1,4 +1,8 @@
+# Todo List website
+this project write by react.js :)
+
 # Getting Started with Create React App
+react commands for start project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
